@@ -295,7 +295,8 @@ def exec_lambda_code(script, handler_function='handler', lambda_cwd=None, lambda
 def get_handler_file_from_name(handler_name, runtime=LAMBDA_DEFAULT_RUNTIME):
     # TODO: support Java Lambdas in the future
     file_ext = '.js' if runtime.startswith(LAMBDA_RUNTIME_NODEJS) else '.py'
-    return '%s%s' % (handler_name.split('.')[0], file_ext)
+    handler_file = '/'.join(handler_name.split('.')[:-1])
+    return '%s%s' % (handler_file, file_ext)
 
 
 def get_handler_function_from_name(handler_name, runtime=LAMBDA_DEFAULT_RUNTIME):
